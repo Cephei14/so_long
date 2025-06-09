@@ -6,7 +6,7 @@
 /*   By: rdhaibi <rdhaibi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 12:16:38 by rdhaibi           #+#    #+#             */
-/*   Updated: 2025/06/06 21:45:49 by rdhaibi          ###   ########.fr       */
+/*   Updated: 2025/06/09 13:47:06 by rdhaibi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>
 # include <stdlib.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 # define ERROR 1
 # define SUCCESS 0
@@ -30,29 +30,40 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 
-typedef struct s_game {
-    char    **data;
-    size_t  width;
-    size_t  height;
-    void    *mlx_ptr;
-    void    *win_ptr;
-    void    *player_img;
-    void    *wall_img;
-    void    *floor_img;
-    void    *collectible_img;
-    void    *exit_img;
-    int     player_x;
-    int     player_y;
-    int     moves;
-    int     collectibles_left;
-} t_game;
+typedef struct s_game
+{
+	char	**data;
+	size_t	width;
+	size_t	height;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*player_img;
+	void	*wall_img;
+	void	*floor_img;
+	void	*collectible_img;
+	void	*exit_img;
+	int		player_x;
+	int		player_y;
+	int		moves;
+	int		collectibles_left;
+	int		e_count;
+	int		p_count;
+}	t_game;
 
 int		name_check(const char *filename);
 int		parse_and_validate_map(const char *file_name, t_game *game);
-void    cleanup_and_exit(t_game *game, int exit_status);
-void    load_images(t_game *game);
-void    render_map(t_game *game);
-int     handle_keypress(int keycode, t_game *game);
-int     handle_window_close(t_game *game);
+void	cleanup_and_exit(t_game *game, int exit_status);
+void	load_images(t_game *game);
+void	render_map(t_game *game);
+int		handle_keypress(int keycode, t_game *game);
+int		handle_window_close(t_game *game);
+size_t	get_line_length(const char *line);
+int		get_map_dimensions(int fd, t_game *game);
+int		check_content_and_count(t_game *game);
+int		check_content_and_count(t_game *game);
+int		validate_counts(t_game *game, int p_count, int e_count);
+int		handle_window_close(t_game *game);
+void	draw_tile(t_game *game, size_t y, size_t x);
+void	draw_tile(t_game *game, size_t y, size_t x);
 
 #endif

@@ -11,6 +11,8 @@ RM = rm -f
 # List all of your project's .c files here
 SRCS =  so_long.c \
         map_parser.c \
+        map_parser2.c \
+        rendering.c \
         cleanup.c
 
 # --- Library Paths ---
